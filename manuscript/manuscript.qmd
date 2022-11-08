@@ -1,0 +1,137 @@
+---
+title: "Plant functional trait responses to climate warming in an Arctic environment on Svalbard"
+author: Aud Halbritter and PFTC4 consortium
+format: html
+bibliography: bibliography.bib
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r}
+#| label: setup
+#| include: false
+#knitr::knit_exit(append, fully = TRUE)
+library(targets)
+library(tarchetypes)
+library(tidyverse)
+library(kableExtra)
+
+theme_set(theme_bw() +
+          theme(text = element_text(size = 15)))
+
+```
+
+The data and results from this report have been published in [@jonsdottirintraspecific]
+
+## Introduction
+
+Global warming affects populations, communities, and ecosystems across the world.
+Arctic plant communities are threatened more because climate is changing at a faster rate in the Arctic.
+Plant functional traits are a powerful approach to predict how plant communities will respond to warmer temperature in the future.
+
+Here, we collected plant functional traits in the high Arctic, in Endalen (78°11'N, 15°45'E), east of Longyearbyen, Svalbard.
+The traits were collected in a common habitat, the *Dryas* heath, which is relative dry and has little snow cover in winter.
+In 2001 ten plots (75x75 cm) were selected and half of the plots were randomly assigned to a warming treatment (OTCs) and the other half to control.
+The research question in this project was, if plant functional traits respond to the warming treatment.
+
+## Methods
+
+We collected six plant functional traits related to potential physiological rates and environmental tolerance of plants including plant height, dry mass, leaf area, leaf thickness, leaf dry matter content (LDMC) and specific leaf area (SLA).
+For each experimental plot, we collected three individuals of each species covering more than 1 % of vascular plant cover.
+The traits were collected according to the trait handbook [@perez2016corrigendum].
+
+## Results
+
+```{r}
+#| label: summary
+#| echo: false
+#| message: false
+
+summary <- tar_read(trait_mean) |>
+  group_by(Trait) |>
+  summarise(se = round(sd(mean)/sqrt(n()), 2),
+            mean = round(mean(mean), 2)) |>
+  mutate(Trait = recode(Trait,
+                        "Dry_Mass_g" = "DM",
+                        "Leaf_Area_cm2" = "LA",
+                        "Leaf_Thickness_mm" = "LT",
+                        "Plant_Height_cm" = "PH",
+                        "SLA_cm2_g" = "SLA")) |>
+ pivot_wider(names_from = Trait, values_from = c(mean, se))
+
+```
+
+```{r}
+#| label: mass
+#| echo: false
+#| message: false
+
+DM <- tar_read(trait_mean) |>
+  filter(Trait %in% c("Dry_Mass_g")) |>
+  group_by(Trait, Treatment) |>
+  summarise(mean = mean(mean)) |>
+  pivot_wider(names_from = Treatment, values_from = mean)
+
+```
+
+
+```{r}
+#| label: area
+#| echo: false
+#| message: false
+
+LA <- tar_read(trait_mean) |>
+  filter(Trait %in% c("Leaf_Area_cm2")) |>
+  group_by(Trait, Treatment) |>
+  summarise(mean = mean(mean)) |>
+  pivot_wider(names_from = Treatment, values_from = mean)
+
+```
+
+The plants were on average `r summary$mean_PH` ± `r summary$se_PH` cm tall and had `r summary$mean_LA` ± `r summary$se_LA` cm^2^ large leaves.
+The warming treatment significantly increased the leaf mass by `r round(DM$OTC/DM$CTL, 2)` and the leaf area by `r round(LA$OTC/LA$CTL, 2)` (@fig-trait-mean; @tbl-trait-result).
+The plants did not differ in height, leaf thickness, SLA or LDMC between the treatments.
+
+```{r}
+#| label: fig-trait-mean
+#| echo: false
+#| fig-cap: "Community weighted trait values for the different plant functional traits and between the control and warming treatment."
+
+tar_read(trait_mean_figure)
+
+```
+
+```{r}
+#| label: tbl-trait-result
+#| echo: false
+#| tbl-cap: Statistics including estimate, standard error, t-statistics and p value for linear regression on treatment effect on plant functional traits.
+
+tar_read(trait_results) |>
+  ungroup() |>
+  mutate(term = recode(term,
+                       "(Intercept)" = "Intercept",
+                       "TreatmentOTC" = "Treatment"),
+         Trait = recode(Trait,
+                        "Dry_Mass_g" = "Dry mass (g)",
+                        "LDMC" = "LDMC (gg-1)",
+                        "Leaf_Area_cm2" = "Leaf area (cm2)",
+                        "Leaf_Thickness_mm" = "Leaf thickness (mm)",
+                        "Plant_Height_cm" = "Plant Height (cm)",
+                        "SLA_cm2_g" = "SLA (cm g-1)"),
+         Trait = factor(Trait, levels = c("Plant Height (cm)", "Dry mass (g)", "Leaf area (cm2)", "SLA (cm g-1)", "Leaf thickness (mm)", "LDMC (gg-1)"))) |>
+  mutate(Trait = as.character(Trait),
+         Trait = if_else(lag(Trait) == Trait, "", Trait),
+         Trait = if_else(is.na(Trait), "Dry mass (g)", Trait),
+         estimate = round(estimate, 3),
+         std.error = round(std.error, 3),
+         statistic = round(statistic, 3),
+         p.value = round(p.value, 3)) |> 
+  select(Trait, "Term" = term, "Estimate" = estimate, "Std.error" = std.error, "Statistic" = statistic, "P value" = p.value) |> 
+  kbl() |> 
+  kable_styling()
+
+```
+
+
+## References
