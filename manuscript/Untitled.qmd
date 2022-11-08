@@ -1,0 +1,24 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(gt)
+```
+
+
+@tbl-trait-result
+
+```{r}
+#| label: tbl-trait-result
+#| echo: false
+#| tbl-cap: something
+#| 
+iris |> 
+    kableExtra::kable()
+```
+
+
