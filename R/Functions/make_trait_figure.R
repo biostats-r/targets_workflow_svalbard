@@ -27,3 +27,19 @@ make_trait_mean_figure <- function(trait_results, trait_mean){
     theme(legend.position = "none")
 
 }
+
+
+make_density_figure <- function(trait_mean){
+
+  fancy_trait_name_dictionary(trait_mean) |>
+    mutate(Treatment = recode(Treatment, CTL = "Control", OTC = "Warming"))  %>%
+    ggplot(aes(x = mean, fill = Treatment)) +
+    geom_density(alpha = 0.5) +
+    scale_fill_manual(values = c("darkgray", "red")) +
+    facet_wrap(~Trait_fancy, scales = "free", labeller = label_parsed)
+
+}
+
+
+
+
