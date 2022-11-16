@@ -40,8 +40,7 @@ targets_pipeline <- list(
       filter(Site == "DH") |>
       # remove NP ratio from data. Not part of original analysis
       filter(Trait %in% c("Dry_Mass_g", "Leaf_Area_cm2", "LDMC", "SLA_cm2_g", "Leaf_Thickness_mm", "Plant_Height_cm")) |>
-      filter(!is.na(Value)) |>
-      mutate(Site = factor(Site, levels = c("SB", "CH", "DH")))
+      filter(!is.na(Value))
   ),
 
   # Bootstrapping

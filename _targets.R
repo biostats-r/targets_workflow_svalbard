@@ -3,8 +3,8 @@
 #######################
 
 #### LOAD LIBRARIES ####
-library("targets")
-library("tarchetypes")
+library(targets)
+library(tarchetypes)
 tar_option_set(packages = c("tidyverse", "lubridate", "traitstrap", "broom", "patchwork"))
 
 
