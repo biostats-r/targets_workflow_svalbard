@@ -72,10 +72,7 @@ targets_pipeline <- list(
       unnest(tidy_result)
   ),
 
-  # render ms
-  manuscript_plan <- list(
-    #render manuscript
-    tar_quarto(name = ms, path = "manuscript/manuscript.qmd")
-  )
+  #render manuscript
+  tar_quarto(name = ms, path = "manuscript/manuscript.qmd")
 
 )
