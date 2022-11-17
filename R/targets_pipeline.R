@@ -5,31 +5,11 @@
 # Import data
 targets_pipeline <- list(
 
-  # data files
-  # community data
-  tar_target(
-    name = community_raw,
-    command = "data/PFTC4_Svalbard_2003_2015_ITEX_Community.csv",
-    format = "file"
-  ),
-
   # trait data
   tar_target(
     name = traits_raw,
     command = "data/PFTC4_Svalbard_2018_ITEX_Traits.csv",
     format = "file"
-  ),
-
-  # import and transform
-  # import community data
-  tar_target(
-    name = community,
-    command = read_csv(file = community_raw) |>
-      # only use Dryas heath
-      filter(Site == "DH") |>
-      filter(FunctionalGroup != "lichen", FunctionalGroup != "moss", FunctionalGroup != "liverwort", FunctionalGroup != "fungi") |>
-      select(-FunctionalGroup) |>
-      filter(Taxon != "equisetum arvense", Taxon != "equisetum scirpoides")
   ),
 
   #import trait data
@@ -43,28 +23,22 @@ targets_pipeline <- list(
       filter(!is.na(Value))
   ),
 
-  # Bootstrapping
-  tar_target(
-    name = trait_mean,
-    command = make_bootstrapping(community, traits)
-  ),
-
   # make figure
   # trait mean figure
   tar_target(
     name = trait_mean_figure,
-    command = make_trait_mean_figure(trait_results, trait_mean)
+    command = make_trait_mean_figure(trait_results, traits)
   ),
 
   # analysis
   # trait analysis
   tar_target(
     name = trait_results,
-    command = trait_mean  |>
+    command = traits  |>
       # run model for treatment by site
       group_by(Trait) |>
       nest(data = -Trait) |>
-      mutate(fit = map(data, ~ lm(mean ~ Treatment, data = .x))) |>
+      mutate(fit = map(data, ~ lm(Value ~ Treatment, data = .x))) |>
       # tidy results
       mutate(tidy_result = map(fit, tidy)) |>
       select(Trait, tidy_result) |>
