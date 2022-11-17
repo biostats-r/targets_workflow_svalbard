@@ -5,12 +5,11 @@
 #### LOAD LIBRARIES ####
 library(targets)
 library(tarchetypes)
-tar_option_set(packages = c("tidyverse", "lubridate", "traitstrap", "broom", "patchwork"))
+tar_option_set(packages = c("tidyverse", "lubridate", "broom"))
 
 
 ### SOURCE CODE ####
 # Functions
-source("R/Functions/bootstrapping.R")
 source("R/Functions/make_trait_figure.R")
 source("R/Functions/fancy_traits.R")
 
