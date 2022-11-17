@@ -5,7 +5,7 @@
 #### LOAD LIBRARIES ####
 library(targets)
 library(tarchetypes)
-tar_option_set(packages = c("tidyverse", "lubridate", "broom"))
+tar_option_set(packages = c("tidyverse", "broom"))
 
 
 ### SOURCE CODE ####
