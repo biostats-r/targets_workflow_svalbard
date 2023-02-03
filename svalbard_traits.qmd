@@ -1,0 +1,131 @@
+---
+title: "Effect of climate change on Bistorta vivipara traits on Svalbard"
+author: "Angelina Jonson"
+format: html
+editor: visual
+date: today
+bibliography: references.bib
+csl: nordic-journal-of-botany.csl
+execute:
+  echo: false
+---
+
+```{r}
+#| label: load-packages
+#| message: false
+library(tidyverse) # for ggplot2, dplyr, readr etc
+library(here)      # for help finding files
+library(lubridate) # for handling dates & times
+library(gt)        # for tables
+library(broom)     # for extracting results from models
+
+# default plot theme
+theme_set(theme_bw())
+
+# default number of digit
+options(digits = 2)
+```
+
+# Introduction
+
+Climate change is expected to have large impacts on both marine [@perry2005] and terrestrial [@topper2018] ecosystems in Norway.
+
+# Methods
+
+## Field methods
+
+The experiment was carried out in the high Arctic, in Endalen (78°11'N, 15°45'E), approximately four kilometres east of Longyearbyen, Svalbard, at 80-90 m elevation. The experiment was established in 2002 in three different habitats which are located in the south--southeast--facing hillside of the valley. The habitats differ in vegetation composition and the time of snowmelt (and hence the length of the growing season). The habitats include a relatively dry Dryas heath with thin snow cover (ca. 10 cm) and early snowmelt, a mesic Cassiope heath habitat with intermediate snow depth and melting date, and a moist snowbed community with deep snow (\> 100 cm) and late snowmelt.
+
+In 2001, ten plots (75x75 cm) were selected in each of the three habitats. Half of the plots were randomly assigned to the warming treatment in 2002 (open-top chambers, OTC) and the other half to control (CTL).
+
+## Data Analysis
+
+Trait data are archived at https://osf.io/smbqh
+
+Data were analysed in R version `r paste(R.version$major, R.version$minor, sep = ".")` [@R], using tidyverse for data manipulation and plots [@tidyverse].
+
+# Results
+
+```{r}
+#| label: load-data
+#| include: false
+traits <- read_delim(
+    file = here("data/PFTC4_Svalbard_2018_ITEX_Traits.csv")) 
+
+# Filter out the required species
+bistorta <- traits |>
+  filter(Taxon == "bistorta vivipara")
+
+```
+
+```{r}
+#| label: model
+
+bistorta_height <- bistorta |> 
+  filter(Trait == "Plant_Height_cm")
+
+mod <- lm(Value ~ Treatment, data = bistorta_height)
+mod_summary <- tidy(mod)
+
+```
+
+In total, we measured the height of `r nrow(bistorta_height)` Bistorta vivipera plants across the different habitats (@tbl-height-means). The Bistorta vivipera in the OTC plots is `r mod_summary$estimate[2]` cm ± `r mod_summary$std.error[2]` taller than in the control plots.
+
+```{r}
+#| label: tbl-height-means
+#| message: false
+#| fig-width: 5.2
+#| tbl-cap: Mean height and number of individuals per treatment and habitat type (CH = Cassiope heath, DH = Dryas heath and SB = Snowbed).
+
+bistorta_height |> 
+  group_by(Treatment, Site) |> 
+  summarise(n = n(), mean_height = mean(Value)) |> 
+  gt() |> 
+  cols_label(n = "Number of plants", Site = "Habitat", mean_height = "Height cm")
+  
+```
+
+```{r}
+#| label: fig-height-effect
+#| fig-cap: Mean plant height in control (CTL) and warm (OTC) plots.
+#| fig-width: 5.2
+
+ggplot(bistorta_height, aes(x = Treatment, y = Value)) +
+  geom_boxplot(fill = "grey80") +
+  labs(x = "Treatment", y = "Height cm")
+```
+
+```{r}
+#| label: fig-thickness-effect
+#| fig-width: 5.2
+#| fig-cap: Mean leaf thickness in control (CTL) and warm (OTC) plots.
+
+leaf_thickness <- bistorta |> 
+  filter(Trait == "Leaf_Thickness_mm")
+
+ggplot(leaf_thickness, aes(x = Treatment, y = Value)) +
+  geom_boxplot(fill = "grey80") +
+  labs(x = "Treatment", y = "Leaf Thickness mm")
+```
+
+We measured the leaf thickness of `r nrow(leaf_thickness)` Bistorta vivipera plants across the different habitats.
+
+```{r}
+#| label: tbl-thickness-means
+#| message: false
+#| tbl-cap: Mean leaf thickness per treatment and habitat type (CH = Cassiope heath, DH = Dryas heath and SB = Snowbed).
+
+leaf_thickness |> 
+  group_by(Treatment, Site) |> 
+  summarise(mean = mean(Value),
+            sd = sd(Value),
+            n = n()) |> 
+  gt() |> 
+  cols_label(Site = "Habitat", 
+             mean = "Mean",
+             sd = "Standard deviation",
+             n = "Number") |> 
+  fmt_number(columns = c(mean, sd, n)) |> 
+  tab_spanner(label = "Leaf thickness", columns = c(mean, sd))
+
+```
