@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.253">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Angelina Jonson">
+<meta name="dcterms.date" content="2023-05-08">
+
+<title>Effect of climate change on Bistorta vivipara traits on Svalbard</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="svalbard_traits_files/libs/clipboard/clipboard.min.js"></script>
+<script src="svalbard_traits_files/libs/quarto-html/quarto.js"></script>
+<script src="svalbard_traits_files/libs/quarto-html/popper.min.js"></script>
+<script src="svalbard_traits_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="svalbard_traits_files/libs/quarto-html/anchor.min.js"></script>
+<link href="svalbard_traits_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="svalbard_traits_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="svalbard_traits_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="svalbard_traits_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="svalbard_traits_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Effect of climate change on Bistorta vivipara traits on Svalbard</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Angelina Jonson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 8, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Climate change is expected to have large impacts on both marine <span class="citation" data-cites="perry2005">(<a href="#ref-perry2005" role="doc-biblioref">Perry et al. 2005</a>)</span> and terrestrial <span class="citation" data-cites="topper2018">(<a href="#ref-topper2018" role="doc-biblioref">Töpper et al. 2018</a>)</span> ecosystems in Norway.</p>
+</section>
+<section id="methods" class="level1">
+<h1>Methods</h1>
+<section id="field-methods" class="level2">
+<h2 class="anchored" data-anchor-id="field-methods">Field methods</h2>
+<p>The experiment was carried out in the high Arctic, in Endalen (78°11’N, 15°45’E), approximately four kilometres east of Longyearbyen, Svalbard, at 80-90 m elevation. The experiment was established in 2002 in three different habitats which are located in the south–southeast–facing hillside of the valley. The habitats differ in vegetation composition and the time of snowmelt (and hence the length of the growing season). The habitats include a relatively dry Dryas heath with thin snow cover (ca. 10 cm) and early snowmelt, a mesic Cassiope heath habitat with intermediate snow depth and melting date, and a moist snowbed community with deep snow (&gt; 100 cm) and late snowmelt.</p>
+<p>In 2001, ten plots (75x75 cm) were selected in each of the three habitats. Half of the plots were randomly assigned to the warming treatment in 2002 (open-top chambers, OTC) and the other half to control (CTL).</p>
+</section>
+<section id="data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
+<p>Trait data are archived at https://osf.io/smbqh</p>
+<p>Data were analysed in R version 4.2.2 <span class="citation" data-cites="R">(<a href="#ref-R" role="doc-biblioref">R Core Team 2022</a>)</span>, using tidyverse for data manipulation and plots <span class="citation" data-cites="tidyverse">(<a href="#ref-tidyverse" role="doc-biblioref">Wickham et al. 2019</a>)</span>.</p>
+</section>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<div class="cell">
+
+</div>
+<p>In total, we measured the height of 77 <em>Bistorta vivipera</em> plants across the different habitats (<a href="#tbl-height-means">Table&nbsp;1</a>, <a href="#fig-height-effect">Figure&nbsp;1</a>). The <em>Bistorta vivipera</em> in the OTC plots is 1.19 cm ± 0.39 taller than in the control plots.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-height-means" class="anchored">
+
+<div id="etczzhwsua" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#etczzhwsua) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#etczzhwsua) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#etczzhwsua) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#etczzhwsua) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#etczzhwsua) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#etczzhwsua) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#etczzhwsua) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#etczzhwsua) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#etczzhwsua) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#etczzhwsua) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#etczzhwsua) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#etczzhwsua) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#etczzhwsua) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#etczzhwsua) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#etczzhwsua) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#etczzhwsua) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#etczzhwsua) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#etczzhwsua) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#etczzhwsua) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#etczzhwsua) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#etczzhwsua) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#etczzhwsua) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#etczzhwsua) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#etczzhwsua) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#etczzhwsua) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#etczzhwsua) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#etczzhwsua) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#etczzhwsua) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#etczzhwsua) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#etczzhwsua) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#etczzhwsua) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#etczzhwsua) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#etczzhwsua) .gt_left {
+  text-align: left;
+}
+
+:where(#etczzhwsua) .gt_center {
+  text-align: center;
+}
+
+:where(#etczzhwsua) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#etczzhwsua) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#etczzhwsua) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#etczzhwsua) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#etczzhwsua) .gt_super {
+  font-size: 65%;
+}
+
+:where(#etczzhwsua) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#etczzhwsua) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#etczzhwsua) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#etczzhwsua) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#etczzhwsua) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#etczzhwsua) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#etczzhwsua) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table"><caption>Table&nbsp;1:  Mean height and number of individuals per treatment and habitat type (CH = Cassiope heath, DH = Dryas heath and SB = Snowbed). </caption>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Habitat">Habitat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Number of plants">Number of plants</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Height cm">Height cm</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <th colspan="3" class="gt_group_heading" scope="colgroup" id="CTL">CTL</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="CTL  Site" class="gt_row gt_left">CH</td>
+<td headers="CTL  n" class="gt_row gt_right">9</td>
+<td headers="CTL  mean_height" class="gt_row gt_right">2.8</td></tr>
+    <tr><td headers="CTL  Site" class="gt_row gt_left">DH</td>
+<td headers="CTL  n" class="gt_row gt_right">13</td>
+<td headers="CTL  mean_height" class="gt_row gt_right">2.9</td></tr>
+    <tr><td headers="CTL  Site" class="gt_row gt_left">SB</td>
+<td headers="CTL  n" class="gt_row gt_right">13</td>
+<td headers="CTL  mean_height" class="gt_row gt_right">3.5</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="3" class="gt_group_heading" scope="colgroup" id="OTC">OTC</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="OTC  Site" class="gt_row gt_left">CH</td>
+<td headers="OTC  n" class="gt_row gt_right">15</td>
+<td headers="OTC  mean_height" class="gt_row gt_right">4.8</td></tr>
+    <tr><td headers="OTC  Site" class="gt_row gt_left">DH</td>
+<td headers="OTC  n" class="gt_row gt_right">17</td>
+<td headers="OTC  mean_height" class="gt_row gt_right">3.4</td></tr>
+    <tr><td headers="OTC  Site" class="gt_row gt_left">SB</td>
+<td headers="OTC  n" class="gt_row gt_right">10</td>
+<td headers="OTC  mean_height" class="gt_row gt_right">5.1</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-height-effect" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="svalbard_traits_files/figure-html/fig-height-effect-1.png" class="img-fluid figure-img" width="499"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Mean plant height in control (CTL) and warm (OTC) plots.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-perry2005" class="csl-entry" role="doc-biblioentry">
+Perry, A. L. et al. 2005. <a href="https://doi.org/10.1126/science.1111322">Climate Change and Distribution Shifts in Marine Fishes</a>. - Science 308: 1912–1915.
+</div>
+<div id="ref-R" class="csl-entry" role="doc-biblioentry">
+R Core Team 2022. <a href="https://www.R-project.org/">R: A language and environment for statistical computing</a>. - R Foundation for Statistical Computing.
+</div>
+<div id="ref-topper2018" class="csl-entry" role="doc-biblioentry">
+Töpper, J. P. et al. 2018. <a href="https://doi.org/10.1111/gcb.14336">The devil is in the detail: Nonadditive and context-dependent plant population responses to increasing temperature and precipitation</a>. - Global Change Biology 24: 4657–4666.
+</div>
+<div id="ref-tidyverse" class="csl-entry" role="doc-biblioentry">
+Wickham, H. et al. 2019. <a href="https://doi.org/10.21105/joss.01686">Welcome to the <span></span>tidyverse<span></span></a>. 4: 1686.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

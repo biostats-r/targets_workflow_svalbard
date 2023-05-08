@@ -69,7 +69,7 @@ mod_summary <- tidy(mod)
 
 ```
 
-In total, we measured the height of `r nrow(bistorta_height)` Bistorta vivipera plants across the different habitats (@tbl-height-means). The Bistorta vivipera in the OTC plots is `r mod_summary$estimate[2]` cm ± `r mod_summary$std.error[2]` taller than in the control plots.
+In total, we measured the height of `r nrow(bistorta_height)` *Bistorta vivipera* plants across the different habitats (@tbl-height-means, @fig-height-effect). The *Bistorta vivipera* in the OTC plots is `r mod_summary$estimate[2]` cm ± `r mod_summary$std.error[2]` taller than in the control plots.
 
 ```{r}
 #| label: tbl-height-means
@@ -91,41 +91,6 @@ bistorta_height |>
 #| fig-width: 5.2
 
 ggplot(bistorta_height, aes(x = Treatment, y = Value)) +
-  geom_boxplot(fill = "grey80") +
+  geom_boxplot(fill = c("grey80", "red")) +
   labs(x = "Treatment", y = "Height cm")
-```
-
-```{r}
-#| label: fig-thickness-effect
-#| fig-width: 5.2
-#| fig-cap: Mean leaf thickness in control (CTL) and warm (OTC) plots.
-
-leaf_thickness <- bistorta |> 
-  filter(Trait == "Leaf_Thickness_mm")
-
-ggplot(leaf_thickness, aes(x = Treatment, y = Value)) +
-  geom_boxplot(fill = "grey80") +
-  labs(x = "Treatment", y = "Leaf Thickness mm")
-```
-
-We measured the leaf thickness of `r nrow(leaf_thickness)` Bistorta vivipera plants across the different habitats.
-
-```{r}
-#| label: tbl-thickness-means
-#| message: false
-#| tbl-cap: Mean leaf thickness per treatment and habitat type (CH = Cassiope heath, DH = Dryas heath and SB = Snowbed).
-
-leaf_thickness |> 
-  group_by(Treatment, Site) |> 
-  summarise(mean = mean(Value),
-            sd = sd(Value),
-            n = n()) |> 
-  gt() |> 
-  cols_label(Site = "Habitat", 
-             mean = "Mean",
-             sd = "Standard deviation",
-             n = "Number") |> 
-  fmt_number(columns = c(mean, sd, n)) |> 
-  tab_spanner(label = "Leaf thickness", columns = c(mean, sd))
-
 ```
