@@ -1,9 +1,7 @@
 ---
 title: "Effect of climate change on Bistorta vivipara traits on Svalbard"
-author: "Angelina Jonson"
 format: html
 editor: visual
-date: today
 bibliography: references.bib
 csl: nordic-journal-of-botany.csl
 execute:
@@ -13,6 +11,8 @@ execute:
 ```{r}
 #| label: load-packages
 #| message: false
+library(targets)
+library(tarchetypes)
 library(tidyverse) # for ggplot2, dplyr, readr etc
 library(here)      # for help finding files
 library(lubridate) # for handling dates & times
@@ -24,11 +24,16 @@ theme_set(theme_bw())
 
 # default number of digit
 options(digits = 2)
+
+# load targets
+tar_load(bistorta_height)
+tar_load(model)
+tar_load(figure)
 ```
 
 # Introduction
 
-Climate change is expected to have large impacts on both marine [@perry2005] and terrestrial [@topper2018] ecosystems in Norway.
+Climate change is expected to have large impacts on both marine [@perry2005] and terrestrial ecosystems in Norway.
 
 # Methods
 
@@ -40,41 +45,25 @@ In 2001, ten plots (75x75 cm) were selected in each of the three habitats. Half 
 
 ## Data Analysis
 
-Trait data are archived at https://osf.io/smbqh
+Trait data are archived at [OSF](https://osf.io/smbqh).
 
 Data were analysed in R version `r paste(R.version$major, R.version$minor, sep = ".")` [@R], using tidyverse for data manipulation and plots [@tidyverse].
 
 # Results
 
 ```{r}
-#| label: load-data
-#| include: false
-traits <- read_delim(
-    file = here("data/PFTC4_Svalbard_2018_ITEX_Traits.csv")) 
-
-# Filter out the required species
-bistorta <- traits |>
-  filter(Taxon == "bistorta vivipara")
-
-```
-
-```{r}
 #| label: model
 
-bistorta_height <- bistorta |> 
-  filter(Trait == "Plant_Height_cm")
-
-mod <- lm(Value ~ Treatment, data = bistorta_height)
-mod_summary <- tidy(mod)
+# tidy model
+mod_summary <- tidy(model)
 
 ```
 
-In total, we measured the height of `r nrow(bistorta_height)` *Bistorta vivipera* plants across the different habitats (@tbl-height-means, @fig-height-effect). The *Bistorta vivipera* in the OTC plots is `r mod_summary$estimate[2]` cm ± `r mod_summary$std.error[2]` taller than in the control plots.
+In total, we measured the height of `r nrow(bistorta_height)` *Bistorta vivipera* plants across the different habitats (@tbl-height-means). The *Bistorta vivipera* in the OTC plots is `r mod_summary$estimate[2]` cm ± `r mod_summary$std.error[2]` taller than in the control plots.
 
 ```{r}
 #| label: tbl-height-means
 #| message: false
-#| fig-width: 5.2
 #| tbl-cap: Mean height and number of individuals per treatment and habitat type (CH = Cassiope heath, DH = Dryas heath and SB = Snowbed).
 
 bistorta_height |> 
@@ -90,7 +79,6 @@ bistorta_height |>
 #| fig-cap: Mean plant height in control (CTL) and warm (OTC) plots.
 #| fig-width: 5.2
 
-ggplot(bistorta_height, aes(x = Treatment, y = Value)) +
-  geom_boxplot(fill = c("grey80", "red")) +
-  labs(x = "Treatment", y = "Height cm")
+figure
+
 ```
