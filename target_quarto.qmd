@@ -1,0 +1,60 @@
+---
+title: "Report"
+format: html
+editor: visual
+---
+
+```{r}
+#| label: set-up
+#| eval: true
+#| echo: false
+
+library(targets)
+
+```
+
+# Introduction
+
+Climate change is expected to have large impacts on both marine [@perry2005] and terrestrial [@topper2018] ecosystems in Norway.
+
+# Methods
+
+## Field methods
+
+The experiment was carried out in the high Arctic, close to Longyearbyen, Svalbard.
+In 2018, sites were established along two elevational gradients with and without nutrient input from nesting sea birds [@vandvik2023plant].
+
+## Data Analysis
+
+Trait data are archived at https://osf.io/smbqh
+
+Data were analysed in R version `r paste(R.version$major, R.version$minor, sep = ".")` [@R], using tidyverse for data manipulation and plots [@tidyverse].
+
+
+## Results
+
+```{r}
+#| label: tbl-mean-area
+#| tbl-cap: Mean leaf area per treatment.
+
+tar_read(traits)
+traits |> 
+  group_by(Gradient) |> 
+  summarise(n = n(), mean_area = mean(Value)) |> 
+  gt() |> 
+  cols_label(n = "Number of plants", mean_area = "Leaf area")
+  
+```
+
+
+
+```{r}
+#| label: fig-trait-figure
+#| eval: false
+#| echo: true
+
+
+```
+
+
+## References
