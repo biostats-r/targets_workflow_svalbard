@@ -2,14 +2,18 @@
 title: "Report"
 format: html
 editor: visual
+bibliography: references.bib
+execute: 
+  echo: false
 ---
 
 ```{r}
 #| label: set-up
 #| eval: true
-#| echo: false
 
 library(targets)
+library(dplyr)
+library(gt)
 
 ```
 
@@ -36,8 +40,11 @@ Data were analysed in R version `r paste(R.version$major, R.version$minor, sep =
 ```{r}
 #| label: tbl-mean-area
 #| tbl-cap: Mean leaf area per treatment.
+#| eval: false
 
-tar_read(traits)
+# set eval true for running this chunk
+
+tar_load(traits)
 traits |> 
   group_by(Gradient) |> 
   summarise(n = n(), mean_area = mean(Value)) |> 
@@ -50,8 +57,6 @@ traits |>
 
 ```{r}
 #| label: fig-trait-figure
-#| eval: false
-#| echo: true
 
 
 ```
