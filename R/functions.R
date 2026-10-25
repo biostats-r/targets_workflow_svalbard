@@ -4,7 +4,7 @@
 
 
 # fit linear regression
-fit_model <- function(data, response, predictor){
+fit_model <- function(data, response, predictor) {
   mod <- lm(as.formula(paste(response, "~", predictor)), data = data)
   mod
 }
