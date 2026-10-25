@@ -3,7 +3,6 @@
 # load libraries
 library(tidyverse)
 library(here)
-library(performance)
 
 # import data
 raw_traits <- read_delim(file = here("data/PFTC4_Svalbard_2018_Gradient_Traits.csv"))
@@ -24,8 +23,6 @@ traits <- raw_traits |>
 # run a linear model
 mod_area <- lm(Value ~ Gradient, data = traits)
 summary(mod_area)
-# check model assumptions
-check_model(mod_area)
 
 # make figure
 ggplot(traits, aes(x = Gradient, y = Value)) +
